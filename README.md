@@ -352,6 +352,7 @@ Vous pouvez aussi utiliser des captures Wireshark ou des fichiers snort.log.xxxx
 ---
 
 **Réponse :**  
+Les preprocesseurs permettent d'examiner les paquets ou traiter les paquets pour les rendre interprétables par le moteur de détection. Cela permet également à Snort de gérer des données séparées en plusieurs paquets.
 
 ---
 
@@ -360,6 +361,8 @@ Vous pouvez aussi utiliser des captures Wireshark ou des fichiers snort.log.xxxx
 ---
 
 **Réponse :**  
+
+Ce warning vient du fait que le fichier de règles / configuration n'inclut pas les preprocesseurs de Snort. Certains paquets ne seront pas traités correctement. Ce problème a été rencontré plus haut lors de l'utilisation du fichier `mysnort.conf` qui n'incluait que notre fichier personnalisé de règles `icmp2.rules` et rien d'autre. Dans le fichier `snort.conf` par défaut, les preprocesseurs sont configurés dans la section _Step 5_.
 
 ---
 
@@ -376,6 +379,8 @@ alert tcp any any -> any any (msg:"Mon nom!"; content:"Rubinstein"; sid:4000015;
 ---
 
 **Réponse :**  
+
+Cette règle va lancer une alerte lorsqu'un paquet TCP venant de n'importe oû via n'importe quel port et allant vers n'importe quelle destination sur n'importe quel port contient la string "Rubinstein". Cette alerte aura comme message lisible par l'humain "Mon nom!". Cette règle a comme sid 4000015 et comme version 1.
 
 ---
 
